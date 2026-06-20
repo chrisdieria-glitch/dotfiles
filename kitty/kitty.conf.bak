@@ -1,0 +1,15 @@
+background_opacity 0.9
+font_size 15.0
+
+font_family JetBrainsMono Nerd Font
+window_padding_width 15
+
+map ctrl+alt+up neighboring_window up 
+map ctrl+alt+down neighboring_window down
+map ctrl+alt+left neighboring_window left
+map ctrl+alt+right neighboring_window right
+
+map ctrl+shift+up resize_window taller 1
+map ctrl+shift+down resize_window shorter 1
+map ctrl+shift+left resize_window narrower 1
+map ctrl+shift+right resize_window wider 1

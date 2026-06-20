@@ -1,0 +1,100 @@
+@define-color main-color rgba(255,255,255,0.95);
+@define-color glass rgba(0,0,0,0.35);
+@define-color soft rgba(255,255,255,0.12);
+
+* {
+  font-family: JetBrainsMono Nerd Font Propo;
+  font-size: 17px;
+  border: none;
+  min-height: 0;
+}
+
+/* WAYBAR ROOT */
+#waybar {
+  background: transparent;
+}
+
+/* CENTER BAR (glass effect) */
+.modules-center {
+  background: @glass;
+  -webkit-backdrop-filter: blur(14px);
+
+  padding: 6px 14px;
+  margin: 10px 12px 0 12px;
+
+  border-radius: 999px;
+  border: 1px solid @soft;
+}
+
+/* WORKSPACES */
+#workspaces {
+  margin: 0 6px;
+}
+
+#workspaces button {
+  padding: 4px 10px;
+  margin: 0 3px;
+
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+
+  transition: all 0.25s ease;
+}
+
+#workspaces button:hover {
+  background: rgba(255,255,255,0.12);
+  color: white;
+  padding: 4px 25px;
+}
+
+#workspaces button.active {
+  background: @main-color;
+  color: black;
+  padding: 4px 25px;
+
+  box-shadow: 0 0 12px rgba(255,255,255,0.25);
+}
+
+/* AUDIO / BACKLIGHT */
+#pulseaudio,
+#backlight {
+  font-size: 18px;
+  margin: 0 10px;
+  color: rgba(255,255,255,0.85);
+  transition: 0.2s ease;
+}
+
+#pulseaudio:hover,
+#backlight:hover {
+  color: white;
+  font-size: 20px;
+}
+
+/* CLOCK (more premium look) */
+#clock {
+  border-radius: 999px;
+  padding: 0px 12px;
+
+  border: 1px solid @soft;
+  background: rgba(255,255,255,0.06);
+
+  font-size: 22px;
+  color: white;
+
+  margin: 4px 0;
+}
+
+/* BATTERY (clean pill style) */
+#battery {
+  padding: 0px 12px;
+  margin: 4px 8px;
+
+  border-radius: 999px;
+  border: 1px solid @soft;
+
+  background: rgba(255,255,255,0.06);
+  color: white;
+
+  font-size: 22px;
+}
