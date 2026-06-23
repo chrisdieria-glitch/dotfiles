@@ -5,6 +5,7 @@
     "custom/network",
     "pulseaudio",
     "backlight",
+    "custom/brightness",
     "battery",
   ],
   "clock": {
