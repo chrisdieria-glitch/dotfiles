@@ -20,11 +20,6 @@
     }
   },
   "pulseaudio": {
-    "min": 0,
-    "max": 100,
-    "orientation": "horizontal"
-  },
-  "pulseaudio": {
     "format": "{icon}",
     "format-bluetooth": "",
     "format-muted": "",
