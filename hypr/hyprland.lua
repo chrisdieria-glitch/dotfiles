@@ -1,0 +1,5 @@
+require("config.env")
+require("config.monitor")
+require("config.settings")
+require("config.binds")
+require("config.startup")
