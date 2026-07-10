@@ -4,8 +4,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
-  zoxide
   sudo
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fzf
   archlinux
   systemd
   copyfile
@@ -17,3 +19,9 @@ source "$ZSH/oh-my-zsh.sh"
 [[ -f "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
 
 eval "$(zoxide init zsh)"
+
+source <(fzf --zsh)
+
+alias ls='eza --icons'
+alias ll='eza -l --icons'
+alias cat='bat'

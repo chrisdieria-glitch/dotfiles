@@ -64,7 +64,7 @@ install_packages() {
     dolphin firefox
 
     # Shell
-    zsh zoxide
+    zsh zoxide fzf bat eza
 
     # Audio
     pipewire pipewire-pulse wireplumber pavucontrol
@@ -122,7 +122,7 @@ install_ohmyzsh() {
     return
   fi
   info "Installing Oh My Zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   ok "Oh My Zsh installed"
 }
 
@@ -135,6 +135,32 @@ install_powerlevel10k() {
   info "Installing Powerlevel10k..."
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$target"
   ok "Powerlevel10k installed"
+}
+
+# ── Zsh plugins ───────────────────────────────
+
+install_zsh_plugins() {
+  local custom_plugins="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
+
+  mkdir -p "$custom_plugins"
+
+  local repos=(
+    "zsh-autosuggestions:https://github.com/zsh-users/zsh-autosuggestions"
+    "zsh-syntax-highlighting:https://github.com/zsh-users/zsh-syntax-highlighting.git"
+  )
+
+  for entry in "${repos[@]}"; do
+    local name="${entry%%:*}"
+    local url="${entry##*:}"
+    local target="$custom_plugins/$name"
+
+    if [[ -d "$target" ]]; then
+      info "Plugin $name already installed"
+    else
+      git clone --depth=1 "$url" "$target"
+      ok "Plugin $name installed"
+    fi
+  done
 }
 
 # ── Backup ────────────────────────────────────
@@ -269,6 +295,7 @@ main() {
   info "Step 4/7: Setting up Zsh..."
   install_zsh
   install_ohmyzsh
+  install_zsh_plugins
   install_powerlevel10k
 
   echo ""

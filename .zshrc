@@ -14,10 +14,36 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Plugins
 plugins=(
     git
+    sudo
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    fzf
 )
-
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+alias ls="eza --icons"
+alias ll="eza -lah --icons"
+alias la="eza -a --icons"
+
+alias cat="bat"
+alias c="clear"
+
+
+# -------------------------
+# Zoxide
+# -------------------------
+
+eval "$(zoxide init zsh)"
+
+alias cd="z"
+
+
+# -------------------------
+# FZF
+# -------------------------
+
+source <(fzf --zsh)

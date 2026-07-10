@@ -57,3 +57,22 @@ Historial de cambios y problemas encontrados.
 - Instalador funcional, idempotente y específico para este repositorio
 - `zsh/` agregado a la estructura del repositorio
 - Para usar: `chmod +x install.sh && ./install.sh`
+
+---
+
+## 2026-07-09 (tercera iteración)
+
+### Cambios realizados
+- **`zsh/.zshrc`**: Actualizado con nuevos plugins (zsh-autosuggestions, zsh-syntax-highlighting, fzf), integración de fzf (`source <(fzf --zsh)`), y aliases (ls→eza, ll→eza -l, cat→bat)
+- **`.install.sh`**:
+  - `install_packages()`: Agregados `fzf`, `bat`, `eza`
+  - `install_ohmyzsh()`: Agregado `RUNZSH=no CHSH=no` para evitar cambio de shell durante la instalación de Oh My Zsh
+  - Nueva función `install_zsh_plugins()`: Clona zsh-autosuggestions y zsh-syntax-highlighting en custom/plugins/
+  - `main()`: Agregada llamada a `install_zsh_plugins` en Step 4
+
+### Paquetes agregados
+- `fzf`, `bat`, `eza` (oficiales)
+
+### Estado
+- Script verificado sintácticamente (bash -n)
+- Configuración de Zsh completa con plugins, aliases e integración de herramientas modernas
