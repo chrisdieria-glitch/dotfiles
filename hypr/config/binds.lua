@@ -51,12 +51,12 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
 
 -- Workspace switching
-for i = 1, 5 do
+for i = 1, 9 do
     hl.bind(mainMod .. "+" .. i, hl.dsp.focus({ workspace = i }))
 end
 
 -- Move to workspace
-for i = 1, 5 do
+for i = 1, 9 do
     hl.bind(mainMod .. "+SHIFT+" .. i, hl.dsp.window.move({ workspace = i }))
 end
 
