@@ -47,3 +47,4 @@ alias cd="z"
 # -------------------------
 
 source <(fzf --zsh)
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

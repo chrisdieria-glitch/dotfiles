@@ -2,7 +2,7 @@ local mainMod     = "SUPER"
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "wofi --show drun"
-local browser     = "firefox"
+local browser     = "firefox-bin"
 local codeEditor  = "code"
 local scripts     = "~/.config/hypr/scripts"
 
