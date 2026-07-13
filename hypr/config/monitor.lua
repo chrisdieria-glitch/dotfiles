@@ -9,7 +9,7 @@ hl.monitor({
     output   = "eDP-1",
     mode     = "preferred",
     position = "4608x0",
-    scale    = 1.07,
+    scale    = 1.25,
 })
 
 hl.monitor({
