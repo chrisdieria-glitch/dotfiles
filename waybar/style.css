@@ -1,104 +1,96 @@
-@define-color main-color rgba(255,255,255,0.95);
-@define-color glass rgb(0,0,0);
-@define-color soft rgba(255,255,255,0.12);
+@define-color background #0B1220;
+@define-color background-alt #111C2E;
+@define-color border #263B55;
+
+@define-color text #DCEAF7;
+@define-color text-muted #8FA8C0;
+
+@define-color blue #5CA9E6;
+@define-color cyan #67D5E8;
+@define-color azure #4D8DFF;
+@define-color purple #9B9FEF;
+
+@define-color red #E06C75;
 
 * {
-  font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 17px;
-  border: none;
-  min-height: 0;
+    border: none;
+    border-radius: 0;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    min-height: 0;
 }
 
-/* WAYBAR ROOT */
-#waybar {
-  background: transparent;
+window#waybar {
+    background: rgba(43, 48, 59, 0.5);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    color: white;
 }
 
-/* CENTER BAR (glass effect) */
-.modules-center {
-  background: @glass;
-  -webkit-backdrop-filter: blur(14px);
-
-  padding: 4px 7px;
-  margin: 8px 12px 0 12px;
-
-  border-radius: 999px;
-  border: 1px solid @soft;
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+  color: white;
 }
 
-/* WORKSPACES */
 #workspaces {
-  margin: 0 6px;
+  margin: 5px 0 0 10px;
+  padding: 4px;
+  border-radius: 5px;
+  background-color: @background;
 }
 
 #workspaces button {
-  padding: 0px 10px;
-  margin: 0 3px;
-
-  border-radius: 999px;
-  background: transparent;
-  color: rgba(255,255,255,0.7);
-
-  transition: all 0.25s ease;
-}
-
-#workspaces button:hover {
-  background: rgba(255,255,255,0.12);
-  color: white;
-  padding: 4px 25px;
+    padding: 5px;
+    background: @background;
+    color: white;
+    border-bottom: 3px solid transparent;
+    margin: 3px;
+    border-radius: 4px;
 }
 
 #workspaces button.active {
-  background: @main-color;
-  color: black;
-  padding: 4px 25px;
-
-  box-shadow: 0 0 12px rgba(255,255,255,0.25);
+    background: #64727D;
+    border-bottom: 3px solid white;
 }
 
-/* AUDIO / BACKLIGHT */
-#pulseaudio,
-#backlight {
-  font-size: 18px;
-  margin: 0 8px;
-  color: rgba(255,255,255,0.85);
-  transition: 0.2s ease;
+#mode, #clock, #battery {
+    padding: 0 10px;
 }
 
-#pulseaudio:hover,
-#backlight:hover {
-  color: white;
-  font-size: 20px;
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
 }
 
-/* CLOCK (more premium look) */
 #clock {
-  border-radius: 999px;
-  padding: 0px 12px;
-
-  border: 1px solid @soft;
-  background: rgba(255,255,255,0.06);
-
-  font-size: 22px;
-  color: white;
-
-  margin: 1px 0;
+    background-color: #64727D;
 }
 
-/* BATTERY (clean pill style) */
 #battery {
-  padding: 0px 12px;
-  margin: 0px 0px 0px 5px;
-
-  border-radius: 999px;
-  border: 1px solid @soft;
-
-  background: rgba(255,255,255,0.06);
-  color: white;
-
-  font-size: 22px;
+    background-color: #ffffff;
+    color: black;
 }
 
-#custom-network {
-  margin: 0 5px
+#battery.charging {
+    color: white;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    background: #f53c3c;
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
