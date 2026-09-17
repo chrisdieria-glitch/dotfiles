@@ -32,23 +32,6 @@ tooltip label {
   color: white;
 }
 
-#window {
-  background-color: @background;
-  padding: 0 10px;
-  margin: 5px 0 0 0;
-  border-radius: 10px;
-
-  color: @text-muted;
-}
-
-#window.empty {
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    background-color: transparent;
-}
-
 #workspaces {
   margin: 5px 0 0 10px;
   padding: 4px;
@@ -120,7 +103,7 @@ tooltip label {
   margin: 5px 0 0 5px;
   padding: 0 20px;
   background-color: @background;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
 }
 
 #custom-power {
@@ -194,4 +177,28 @@ tooltip label {
 
 #pulseaudio-slider.muted highlight {
     background-color: orange;
+}
+
+#bluetooth {
+  margin: 5px 5px 0 0;
+  background-color: @background;
+  padding: 0 15px;
+  border-radius: 0 10px 10px 0;
+}
+
+#network {
+  margin: 5px 0 0 0;
+  background-color: @background;
+  padding: 0 20px 0 18px;
+  border-radius: 10px 0 0 10px;
+  border-right: 2px solid @purple;
+}
+
+#memory {
+  margin: 5px 0 0 0;
+  background-color: @background;
+  padding: 0 20px 0 18px;
+  border-radius: 0 10px 10px 0;
+  border-left: 2px solid @purple;
+
 }
