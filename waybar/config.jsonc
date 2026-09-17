@@ -1,8 +1,8 @@
 {
     "layer": "top",
-    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["battery", "clock"],
+    "modules-left": ["hyprland/workspaces", "hyprland/mode","backlight/slider","pulseaudio/slider"],
+    "modules-center": ["hyprland/window","cpu"],
+    "modules-right": ["battery", "clock","custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -13,11 +13,41 @@
           "*": 5
       }
     },
+    "custom/power": {
+	    "format" : "⏻",
+	    "tooltip": false,
+	    "menu": "on-click",
+	    "menu-file": "~/.config/waybar/power_menu.xml",
+	    "menu-actions": {
+		    "shutdown": "shutdown",
+		    "reboot": "reboot",
+		    "suspend": "systemctl suspend",
+		    "hibernate": "systemctl hibernate",
+	    },
+    },
+    "cpu": {
+	    "interval": 1,
+	    "format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% ",
+	    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    },
     "battery": {
         "format": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
         "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "backlight/slider": {
+      "min": 1,
+      "max": 100,
+      "orientation": "horizontal",
+      "device": "intel_backlight"
+    },
+    "pulseaudio/slider": {
+      "min": 0,
+      "max": 100,
+      "orientation": "horizontal",
+      "zero-on-mute": false,
+      "unmute-on-volume-change": false
     }
 }

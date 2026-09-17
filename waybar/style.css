@@ -21,9 +21,7 @@
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: white;
+    background: transparent;
 }
 
 tooltip {
@@ -34,10 +32,27 @@ tooltip label {
   color: white;
 }
 
+#window {
+  background-color: @background;
+  padding: 0 10px;
+  margin: 5px 0 0 0;
+  border-radius: 10px;
+
+  color: @text-muted;
+}
+
+#window.empty {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    background-color: transparent;
+}
+
 #workspaces {
   margin: 5px 0 0 10px;
   padding: 4px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: @background;
 }
 
@@ -47,16 +62,17 @@ tooltip label {
     color: white;
     border-bottom: 3px solid transparent;
     margin: 3px;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 #workspaces button.active {
     background: #64727D;
-    border-bottom: 3px solid white;
 }
 
 #mode, #clock, #battery {
     padding: 0 10px;
+    margin: 5px 0 0 0;
+    font-size: 18px;
 }
 
 #mode {
@@ -65,12 +81,17 @@ tooltip label {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: @background;
+    padding: 5px 20px 0 10px;
+    border-radius: 0 10px 10px 0; 
+    margin-right: 5px;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: black;
+    background-color: @background;
+    color: #fff;
+    padding: 0 15px;
+    border-radius: 10px 0 0 10px;
 }
 
 #battery.charging {
@@ -93,4 +114,84 @@ tooltip label {
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#cpu {
+  margin: 5px 0 0 5px;
+  padding: 0 20px;
+  background-color: @background;
+  border-radius: 10px;
+}
+
+#custom-power {
+    color: @cyan;
+    background: @background-alt;
+    font-size: 25px;
+    
+    padding: 0 10px;
+    margin: 5px 5px 0 0;
+
+    border-radius: 8px;
+}
+
+#backlight-slider {
+  background-color: @background-alt;
+  margin: 5px 0 0 5px;
+  border-radius: 10px 0 0 10px;
+}
+
+#backlight-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#backlight-slider trough {
+    min-height: 25px;
+    min-width: 40px;
+    border-radius: 5px;
+    background-color: black;
+}
+
+#backlight-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background-color: @cyan;
+}
+
+#pulseaudio-slider {
+  background-color: @background-alt;
+  margin: 5px 0 0 0;
+  border-radius: 0 10px 10px 0;
+}
+
+#pulseaudio-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+    min-height: 25px;
+    min-width: 40px;
+    border-radius: 5px;
+    background: black;
+}
+
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background: @azure;
+
+
+}
+
+#pulseaudio-slider.muted highlight {
+    background-color: orange;
 }
