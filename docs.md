@@ -76,3 +76,39 @@ Historial de cambios y problemas encontrados.
 ### Estado
 - Script verificado sintácticamente (bash -n)
 - Configuración de Zsh completa con plugins, aliases e integración de herramientas modernas
+
+---
+
+## 2026-09-26
+
+### Cambios realizados
+- Corregida la posición de los monitores para respetar la disposición física real: **eDP-1 a la izquierda, HDMI-A-1 a la derecha**
+- `hypr/config/monitor.lua` (config activa):
+  - `eDP-1`: `position` `4608x0` → `0x0` (pasa a ser el ancla izquierda)
+  - `HDMI-A-1`: `position` `2560x0` → `1800x0` (queda pegado al eDP-1)
+  - Bloques reordenados para que eDP-1 se lea primero
+  - Comentario añadido documentando de dónde sale el `1800`
+- `hypr/hyprland.conf` (respaldo, sincronizado): mismas posiciones + fix del typo `preffered` → `preferred` en HDMI-A-1
+
+### Problemas encontrados
+- **Las posiciones estaban calculadas con anchos físicos, no lógicos.** Hyprland posiciona en píxeles *lógicos* (ya divididos por la escala), pero los valores `2560x0` y `4608x0` corresponden a los anchos físicos. Esto dejaba un **hueco de ~2560px lógicos** entre ambos monitores (HDMI-A-1 terminaba en x=2048 con scale 1.25, pero eDP-1 arrancaba en x=4608).
+- **`hypr/hyprland.conf` es config muerta.** El journal confirma que Hyprland carga `hyprland.lua`:
+  `[cfg] Using lua config found at /home/chris/.config/hypr/hyprland.lua`
+  Las ediciones a `monitor.lua` son las que surten efecto; las de `hyprland.conf` solo valen como respaldo.
+- **`hyprctl keyword monitor` no funciona** bajo el parser no-legacy de Lua:
+  `keyword can't work with non-legacy parsers. Use eval.`
+  Se aplicó en caliente con `hyprctl eval 'hl.monitor({...})'` en lugar de `hyprctl reload`, para no re-lanzar los procesos de `startup.lua` (waybar, hyprpaper, hypridle, swaync, cliphist). Nota: `hyprctl reload config-only` tampoco habría servido, ya que omite la recarga de monitores.
+
+### Detalles de escala
+- eDP-1 es 1920x1200; Hyprland ajusta el `1.07` pedido a **1.0666667** (1920/1800) para mantener tamaños lógicos enteros → **1800x1125 lógico**
+- HDMI-A-1 es 2560x1440 @ 1.25 → **2048x1152 lógico**
+- El `1800x0` de HDMI-A-1 depende de la escala de eDP-1: si se cambia esa escala o resolución, hay que recalcular
+
+### Verificación
+- `hyprctl monitors` → `eDP-1 ... at 0x0`, `HDMI-A-1 ... at 1800x0`, hueco cerrado
+- `hyprctl configerrors` → vacío
+
+### Estado
+- Distribución de monitores corregida y aplicada en caliente, sin necesidad de reiniciar sesión
+- Ambos archivos de config sincronizados
+- Sin cambios en `settings.lua`, `binds.lua`, `env.lua`, `startup.lua`, `hypridle.conf`, `hyprlock.conf`, `hyprpaper.conf`
